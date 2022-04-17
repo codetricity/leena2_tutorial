@@ -11,6 +11,7 @@ class Leena extends SpriteComponent
   }
 
   bool onGround = false;
+  bool facingRight = true;
 
   @override
   Future<void> onLoad() async {
@@ -24,8 +25,13 @@ class Leena extends SpriteComponent
 
     if (other is Ground) {
       gameRef.velocity.y = 0;
-      print('hit ground');
       onGround = true;
     }
+  }
+
+  @override
+  void onCollisionEnd(other) {
+    super.onCollisionEnd(other);
+    onGround = false;
   }
 }
