@@ -13,7 +13,8 @@ void main() {
 class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   Leena leena = Leena();
   final double gravity = 2.8;
-  final double pushSpeed = 100;
+  final double pushSpeed = 80;
+  final double groundFriction = .32;
   final double jumpForce = 180;
   Vector2 velocity = Vector2(0, 0);
   late TiledComponent homeMap;

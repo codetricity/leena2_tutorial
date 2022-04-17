@@ -21,6 +21,28 @@ class Leena extends SpriteComponent
   }
 
   @override
+  void update(double dt) {
+    super.update(dt);
+
+    // moving left
+    if (x > 0 && gameRef.velocity.x <= 0) {
+      gameRef.velocity.x += gameRef.groundFriction;
+
+      if (gameRef.velocity.x > 0) {
+        gameRef.velocity.x = 0;
+      }
+    } else if (x < gameRef.size.x - width && gameRef.velocity.x >= 0) {
+      // moving to the right
+      gameRef.velocity.x -= gameRef.groundFriction;
+      if (gameRef.velocity.x < 0) {
+        gameRef.velocity.x = 0;
+      }
+    } else {
+      gameRef.velocity.x = 0;
+    }
+  }
+
+  @override
   void onCollision(intersectionPoints, other) {
     super.onCollision(intersectionPoints, other);
     if (other is Ground) {
@@ -37,14 +59,13 @@ class Leena extends SpriteComponent
             onGround = true;
           }
         }
-      } else {
-        if (gameRef.velocity.x != 0) {
-          for (var point in intersectionPoints) {
-            print(point);
-            if (y - 5 >= point[1]) {
-              print('hit on side of ground');
-              gameRef.velocity.x = 0;
-            }
+      }
+      if (gameRef.velocity.x != 0) {
+        for (var point in intersectionPoints) {
+          print(point);
+          if (y - 5 >= point[1]) {
+            print('hit on side of ground');
+            gameRef.velocity.x = 0;
           }
         }
       }
