@@ -42,7 +42,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
     leena
       ..sprite = await loadSprite('girl.png')
       ..size = Vector2.all(100)
-      ..position = Vector2(340, 30);
+      ..position = Vector2(440, 30);
     add(leena);
   }
 
@@ -66,19 +66,24 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
           leena.flipHorizontallyAroundCenter();
           leena.facingRight = false;
         }
-        leena.x -= 5;
-        velocity.x -= pushSpeed;
+        if (!leena.hitLeft) {
+          leena.x -= 5;
+          velocity.x -= pushSpeed;
+        }
       } else if (info.eventPosition.game.x > size[0] - 100) {
         print('push right');
         if (!leena.facingRight) {
           leena.facingRight = true;
           leena.flipHorizontallyAroundCenter();
         }
-        leena.x += 5;
-        velocity.x += pushSpeed;
+        if (!leena.hitRight) {
+          leena.x += 5;
+          velocity.x += pushSpeed;
+        }
       }
       if (info.eventPosition.game.y < 100) {
         print('jump up');
+
         leena.y -= 10;
         velocity.y = -jumpForce;
       }
