@@ -23,6 +23,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   late SpriteAnimation rideAnim;
   late SpriteAnimation pushAnim;
   late SpriteAnimation idleAnim;
+  late SpriteAnimation jumpAnim;
 
   @override
   Future<void> onLoad() async {
@@ -52,6 +53,9 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
         stepTime: 0.1);
     idleAnim = SpriteAnimation.spriteList(
         await fromJSONAtlas('idle.png', 'idle.json'),
+        stepTime: 0.1);
+    jumpAnim = SpriteAnimation.spriteList(
+        await fromJSONAtlas('jump.png', 'jump.json'),
         stepTime: 0.1);
 
     leena
@@ -106,9 +110,13 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
       }
       if (info.eventPosition.game.y < 100) {
         print('jump up');
-
+        leena.animation = jumpAnim;
+        Future.delayed(const Duration(milliseconds: 1200), () {
+          leena.animation = rideAnim;
+        });
         leena.y -= 10;
         velocity.y = -jumpForce;
+        leena.onGround = false;
       }
     }
   }

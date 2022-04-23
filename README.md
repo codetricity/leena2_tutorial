@@ -1,5 +1,7 @@
 # Girl Skater Leena2
 
+![screenshot](docs/screenshot.gif)
+
 ## Credits
 
 * Leena graphics

@@ -44,7 +44,7 @@ class Leena extends SpriteAnimationComponent
       gameRef.velocity.x = 0;
     }
 
-    if (gameRef.velocity.x == 0) {
+    if (gameRef.velocity.x == 0 && !onGround) {
       animation = gameRef.idleAnim;
     }
   }
