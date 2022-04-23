@@ -1,5 +1,7 @@
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
+import 'package:flame_texturepacker/flame_texturepacker.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'package:leena2/actors/leena.dart';
@@ -18,6 +20,9 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   final double jumpForce = 180;
   Vector2 velocity = Vector2(0, 0);
   late TiledComponent homeMap;
+  late SpriteAnimation rideAnim;
+  late SpriteAnimation pushAnim;
+  late SpriteAnimation idleAnim;
 
   @override
   Future<void> onLoad() async {
@@ -39,9 +44,19 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
 
     camera.viewport = FixedResolutionViewport(Vector2(mapWidth, mapHeight));
 
+    rideAnim = SpriteAnimation.spriteList(
+        await fromJSONAtlas('ride.png', 'ride.json'),
+        stepTime: 0.1);
+    pushAnim = SpriteAnimation.spriteList(
+        await fromJSONAtlas('push.png', 'push.json'),
+        stepTime: 0.1);
+    idleAnim = SpriteAnimation.spriteList(
+        await fromJSONAtlas('idle.png', 'idle.json'),
+        stepTime: 0.1);
+
     leena
-      ..sprite = await loadSprite('girl.png')
-      ..size = Vector2.all(100)
+      ..animation = rideAnim
+      ..size = Vector2(83, 100)
       ..position = Vector2(440, 30);
     add(leena);
   }
@@ -69,6 +84,10 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
         if (!leena.hitLeft) {
           leena.x -= 5;
           velocity.x -= pushSpeed;
+          leena.animation = pushAnim;
+          Future.delayed(const Duration(milliseconds: 1200), () {
+            leena.animation = rideAnim;
+          });
         }
       } else if (info.eventPosition.game.x > size[0] - 100) {
         print('push right');
@@ -79,6 +98,10 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
         if (!leena.hitRight) {
           leena.x += 5;
           velocity.x += pushSpeed;
+          leena.animation = pushAnim;
+          Future.delayed(const Duration(milliseconds: 1200), () {
+            leena.animation = rideAnim;
+          });
         }
       }
       if (info.eventPosition.game.y < 100) {

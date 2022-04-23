@@ -4,7 +4,7 @@ import 'package:leena2/main.dart';
 import 'package:leena2/world/ground.dart';
 
 // new in Flame 1.1 (April 2022)
-class Leena extends SpriteComponent
+class Leena extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef<LeenaGame> {
   Leena() : super() {
     debugMode = true;
@@ -19,6 +19,7 @@ class Leena extends SpriteComponent
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+
     add(RectangleHitbox());
   }
 
@@ -41,6 +42,10 @@ class Leena extends SpriteComponent
       }
     } else {
       gameRef.velocity.x = 0;
+    }
+
+    if (gameRef.velocity.x == 0) {
+      animation = gameRef.idleAnim;
     }
   }
 
