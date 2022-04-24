@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="100" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="12">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="100" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="23">
  <tileset firstgid="1" name="background" tilewidth="32" tileheight="32" tilecount="713" columns="31">
   <image source="../images/background.png" width="1000" height="750"/>
  </tileset>
@@ -58,6 +58,63 @@
   </tile>
   <tile id="17">
    <image width="32" height="32" source="../images/ground_tiles/18.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="732" name="gems" tilewidth="32" tileheight="32" tilecount="18" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Coal.png"/>
+  </tile>
+  <tile id="1">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Copper Ingot.png"/>
+  </tile>
+  <tile id="2">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Copper Nugget.png"/>
+  </tile>
+  <tile id="3">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Crystal.png"/>
+  </tile>
+  <tile id="4">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Cut Emerald.png"/>
+  </tile>
+  <tile id="5">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Cut Sapphire.png"/>
+  </tile>
+  <tile id="6">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Cut Topaz.png"/>
+  </tile>
+  <tile id="7">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Diamond.png"/>
+  </tile>
+  <tile id="8">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Emerald.png"/>
+  </tile>
+  <tile id="9">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Gold Nugget.png"/>
+  </tile>
+  <tile id="10">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Golden Ingot.png"/>
+  </tile>
+  <tile id="11">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Obsidian.png"/>
+  </tile>
+  <tile id="12">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Pearl.png"/>
+  </tile>
+  <tile id="13">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Ruby.png"/>
+  </tile>
+  <tile id="14">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Sapphire.png"/>
+  </tile>
+  <tile id="15">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Silver Ingot.png"/>
+  </tile>
+  <tile id="16">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Silver Nugget.png"/>
+  </tile>
+  <tile id="17">
+   <image width="32" height="32" source="../../../sprite_4_direction/george_jewels/Pixel Art Icon Pack - RPG/Ore &amp; Gem/Topaz.png"/>
   </tile>
  </tileset>
  <layer id="1" name="background" width="100" height="20">
