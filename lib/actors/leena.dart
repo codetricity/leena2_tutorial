@@ -34,9 +34,10 @@ class Leena extends SpriteAnimationComponent
       if (gameRef.velocity.x > 0) {
         gameRef.velocity.x = 0;
       }
-    } else if (x < gameRef.size.x - width && gameRef.velocity.x >= 0) {
+    } else if (x < gameRef.mapWidth - width && gameRef.velocity.x >= 0) {
       // moving to the right
       gameRef.velocity.x -= gameRef.groundFriction;
+      // print('${gameRef.velocity.x}, ${gameRef.groundFriction}');
       if (gameRef.velocity.x < 0) {
         gameRef.velocity.x = 0;
       }
@@ -57,7 +58,7 @@ class Leena extends SpriteAnimationComponent
         if (intersectionPoints.length == 2) {
           var x1 = intersectionPoints.first[0];
           var x2 = intersectionPoints.last[0];
-          if ((x1 - x2).abs() < 2) {
+          if ((x1 - x2).abs() < 10) {
             // hit the side, so send down with gravity.
             gameRef.velocity.y = 100;
             print('stuck on side');

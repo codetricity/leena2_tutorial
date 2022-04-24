@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_texturepacker/flame_texturepacker.dart';
@@ -9,6 +10,9 @@ import 'package:leena2/world/ground.dart';
 import 'package:tiled/tiled.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Flame.device.fullScreen();
+  Flame.device.setLandscape();
   runApp(GameWidget(game: LeenaGame()));
 }
 
@@ -16,7 +20,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   Leena leena = Leena();
   final double gravity = 2.8;
   final double pushSpeed = 80;
-  final double groundFriction = .32;
+  final double groundFriction = .52;
   final double jumpForce = 180;
   Vector2 velocity = Vector2(0, 0);
   late TiledComponent homeMap;
@@ -24,15 +28,16 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   late SpriteAnimation pushAnim;
   late SpriteAnimation idleAnim;
   late SpriteAnimation jumpAnim;
+  late double mapWidth;
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
-    homeMap = await TiledComponent.load('map.tmx', Vector2.all(32));
+    homeMap = await TiledComponent.load('map2.tmx', Vector2.all(32));
     add(homeMap);
 
-    double mapWidth = 32.0 * homeMap.tileMap.map.width;
+    mapWidth = 32.0 * homeMap.tileMap.map.width;
     double mapHeight = 32.0 * homeMap.tileMap.map.height;
     // recent change in flame_tiled..  v 1.4?
     var obstacleGroup = homeMap.tileMap.getLayer<ObjectGroup>('ground');
@@ -43,7 +48,8 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
           position: Vector2(obj.x, obj.y)));
     }
 
-    camera.viewport = FixedResolutionViewport(Vector2(mapWidth, mapHeight));
+    // camera.viewport = FixedResolutionViewport(Vector2(mapWidth, mapHeight));
+    camera.viewport = FixedResolutionViewport(Vector2(1280, mapHeight));
 
     rideAnim = SpriteAnimation.spriteList(
         await fromJSONAtlas('ride.png', 'ride.json'),
@@ -63,6 +69,8 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
       ..size = Vector2(83, 100)
       ..position = Vector2(440, 30);
     add(leena);
+    camera.followComponent(leena,
+        worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
   }
 
   @override
@@ -79,7 +87,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   void onTapDown(TapDownInfo info) {
     super.onTapDown(info);
     if (leena.onGround) {
-      if (info.eventPosition.game.x < 100) {
+      if (info.eventPosition.viewport.x < 100) {
         print('push left');
         if (leena.facingRight) {
           leena.flipHorizontallyAroundCenter();
@@ -93,7 +101,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
             leena.animation = rideAnim;
           });
         }
-      } else if (info.eventPosition.game.x > size[0] - 100) {
+      } else if (info.eventPosition.viewport.x > size[0] - 100) {
         print('push right');
         if (!leena.facingRight) {
           leena.facingRight = true;
