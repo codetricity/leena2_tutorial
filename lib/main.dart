@@ -9,6 +9,8 @@ import 'package:leena2/actors/leena.dart';
 import 'package:leena2/world/ground.dart';
 import 'package:tiled/tiled.dart';
 
+import 'actors/gem.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.fullScreen();
@@ -46,6 +48,15 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
       add(Ground(
           size: Vector2(obj.width, obj.height),
           position: Vector2(obj.x, obj.y)));
+    }
+
+    var gemGroup = homeMap.tileMap.getLayer<ObjectGroup>('gems');
+
+    for (final gem in gemGroup!.objects) {
+      add(Gem(tiledObject: gem)
+        ..sprite = await loadSprite('gems/Ruby.png')
+        ..position = Vector2(gem.x, gem.y - gem.height)
+        ..size = Vector2(gem.width, gem.height));
     }
 
     // camera.viewport = FixedResolutionViewport(Vector2(mapWidth, mapHeight));

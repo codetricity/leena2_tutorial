@@ -65,7 +65,7 @@ flutter:
     - assets/images/
     - assets/tiles/
     - assets/images/ground_tiles/
-    - assets/images/ground_objects/
+    - assets/images/gems/
     - assets/
   #   - images/a_dot_ham.jpeg
 
