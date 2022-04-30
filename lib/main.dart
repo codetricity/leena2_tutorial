@@ -20,7 +20,7 @@ void main() {
 }
 
 class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
-  Leena leena = Leena();
+  Leena leena = Leena(position: Vector2(340, 30));
   final double gravity = 2.8;
   final double pushSpeed = 80;
   final double groundFriction = .52;
@@ -78,10 +78,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
         await fromJSONAtlas('jump.png', 'jump.json'),
         stepTime: 0.1);
 
-    leena
-      ..animation = rideAnim
-      ..size = Vector2(83, 100)
-      ..position = Vector2(440, 30);
+    leena..animation = rideAnim;
     add(leena);
     camera.followComponent(leena,
         worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
@@ -111,11 +108,13 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
           leena.facingRight = false;
         }
         if (!leena.hitLeft) {
-          leena.x -= 5;
+          leena.x -= 15;
           velocity.x -= pushSpeed;
           leena.animation = pushAnim;
           Future.delayed(const Duration(milliseconds: 1200), () {
-            leena.animation = rideAnim;
+            if (leena.animation != jumpAnim) {
+              leena.animation = rideAnim;
+            }
           });
         }
       } else if (info.eventPosition.viewport.x > size[0] - 100) {
@@ -125,11 +124,13 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
           leena.flipHorizontallyAroundCenter();
         }
         if (!leena.hitRight) {
-          leena.x += 5;
+          leena.x += 15;
           velocity.x += pushSpeed;
           leena.animation = pushAnim;
           Future.delayed(const Duration(milliseconds: 1200), () {
-            leena.animation = rideAnim;
+            if (leena.animation != jumpAnim) {
+              leena.animation = rideAnim;
+            }
           });
         }
       }
