@@ -2,6 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
+import 'package:flame_audio/audio_pool.dart';
 import 'package:flame_texturepacker/flame_texturepacker.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,8 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   late SpriteAnimation idleAnim;
   late SpriteAnimation jumpAnim;
   late double mapWidth;
+  late AudioPool yay;
+  late AudioPool bonus;
 
   @override
   Future<void> onLoad() async {
@@ -82,6 +85,9 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
     add(leena);
     camera.followComponent(leena,
         worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
+    // load audio file from local storage into game
+    yay = await AudioPool.create('yay.mp3');
+    bonus = await AudioPool.create('bonus.wav');
   }
 
   @override
