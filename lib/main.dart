@@ -56,8 +56,9 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
     var gemGroup = homeMap.tileMap.getLayer<ObjectGroup>('gems');
 
     for (final gem in gemGroup!.objects) {
+      var gemSprite = await loadSprite('gems/${gem.type}.png');
       add(Gem(tiledObject: gem)
-        ..sprite = await loadSprite('gems/Ruby.png')
+        ..sprite = gemSprite
         ..position = Vector2(gem.x, gem.y - gem.height)
         ..size = Vector2(gem.width, gem.height));
     }
