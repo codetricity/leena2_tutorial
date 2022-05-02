@@ -8,7 +8,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'package:leena2/actors/leena.dart';
 import 'package:leena2/world/ground.dart';
-import 'package:tiled/tiled.dart';
+import 'package:tiled/tiled.dart' hide Text;
 
 import 'actors/gem.dart';
 
@@ -16,7 +16,21 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.fullScreen();
   Flame.device.setLandscape();
-  runApp(GameWidget(game: LeenaGame()));
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: GameWidget(
+        game: LeenaGame(),
+        overlayBuilderMap: {
+          'MainOverlay': (BuildContext context, LeenaGame game) {
+            return Row(
+              children: [Text('score goes here')],
+              mainAxisAlignment: MainAxisAlignment.center,
+            );
+          },
+        },
+      ),
+    ),
+  ));
 }
 
 class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
@@ -86,6 +100,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
     // load audio file from local storage into game
     yay = await AudioPool.create('yay.mp3');
     bonus = await AudioPool.create('bonus.wav');
+    overlays.add('MainOverlay');
   }
 
   @override
