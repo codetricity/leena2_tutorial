@@ -1,6 +1,6 @@
 # Girl Skater Leena2
 
-![screenshot](docs/screenshot.gif)
+![screenshot](readme/screenshot.gif)
 
 ## Credits
 
