@@ -24,6 +24,8 @@ class Gem extends SpriteComponent
     if (other is Leena) {
       removeFromParent();
       gameRef.bonus.start();
+      gameRef.gemScore += 1;
+      gameRef.overlays.notifyListeners();
     }
 
     super.onCollision(intersectionPoints, other);
