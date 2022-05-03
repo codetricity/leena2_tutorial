@@ -1,6 +1,14 @@
-# Girl Skater Leena2
+# Leena - Girl Skater
 
 ![screenshot](readme/screenshot.gif)
+
+![game over](readme/game_over.png)
+
+## Game Play
+
+* tap the left and right sides of the screen to move left or right
+* tap the top of the screen to jump
+* Leena cannot move left or right when she is in the air
 
 ## Credits
 
@@ -16,3 +24,6 @@
 * Audio SFX
   * Yay - https://pixabay.com/sound-effects/yay-6120/
   * Gem bonus - https://mixkit.co/free-sound-effects/game/
+* fonts
+  * https://www.1001fonts.com/arcade-fonts.html
+  

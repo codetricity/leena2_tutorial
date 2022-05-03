@@ -11,12 +11,28 @@ import 'package:leena2/world/ground.dart';
 import 'package:tiled/tiled.dart';
 
 import 'actors/gem.dart';
+import 'dashboard/dashboard.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.fullScreen();
   Flame.device.setLandscape();
-  runApp(GameWidget(game: LeenaGame()));
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        body: GameWidget(
+          game: LeenaGame(),
+          overlayBuilderMap: {
+            'DashboardOverlay': (BuildContext context, LeenaGame game) {
+              return Dashboard(
+                game: game,
+              );
+            }
+          },
+        ),
+      ),
+    ),
+  );
 }
 
 class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
@@ -35,9 +51,24 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   late AudioPool yay;
   late AudioPool bonus;
 
+  int magicLevel = 0;
+
+  late Timer countDown;
+  int remainingTime = 30;
+  bool timerStarted = false;
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+
+    countDown = Timer(1, onTick: () {
+      if (remainingTime > 0) {
+        remainingTime -= 1;
+        print('notified listener');
+
+        overlays.notifyListeners();
+      }
+    }, repeat: true);
 
     homeMap = await TiledComponent.load('map2.tmx', Vector2.all(32));
     add(homeMap);
@@ -86,6 +117,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
     // load audio file from local storage into game
     yay = await AudioPool.create('yay.mp3');
     bonus = await AudioPool.create('bonus.wav');
+    overlays.add('DashboardOverlay');
   }
 
   @override
@@ -96,6 +128,10 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
       velocity.y += gravity;
     }
     leena.position += velocity * dt;
+
+    if (timerStarted && remainingTime > 0) {
+      countDown.update(dt);
+    }
   }
 
   @override
@@ -103,12 +139,13 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
     super.onTapDown(info);
     if (leena.onGround) {
       if (info.eventPosition.viewport.x < 100) {
+        timerStarted = true;
         print('push left');
         if (leena.facingRight) {
           leena.flipHorizontallyAroundCenter();
           leena.facingRight = false;
         }
-        if (!leena.hitLeft) {
+        if (!leena.hitLeft && remainingTime > 0) {
           leena.x -= 15;
           velocity.x -= pushSpeed;
           leena.animation = pushAnim;
@@ -119,12 +156,13 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
           });
         }
       } else if (info.eventPosition.viewport.x > size[0] - 100) {
+        timerStarted = true;
         print('push right');
         if (!leena.facingRight) {
           leena.facingRight = true;
           leena.flipHorizontallyAroundCenter();
         }
-        if (!leena.hitRight) {
+        if (!leena.hitRight && remainingTime > 0) {
           leena.x += 15;
           velocity.x += pushSpeed;
           leena.animation = pushAnim;
@@ -141,9 +179,11 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
         Future.delayed(const Duration(milliseconds: 1200), () {
           leena.animation = rideAnim;
         });
-        leena.y -= 10;
-        velocity.y = -jumpForce;
-        leena.onGround = false;
+        if (remainingTime > 0) {
+          leena.y -= 10;
+          velocity.y = -jumpForce;
+          leena.onGround = false;
+        }
       }
     }
   }
