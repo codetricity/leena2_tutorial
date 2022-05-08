@@ -1,8 +1,9 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:leena2/actors/leena.dart';
-import 'package:leena2/main.dart';
 import 'package:tiled/tiled.dart';
+
+import '../game/leena_game.dart';
 
 class Gem extends SpriteComponent
     with CollisionCallbacks, HasGameRef<LeenaGame> {
