@@ -4,6 +4,10 @@
 
 ![game over](readme/game_over.png)
 
+## Intro
+
+![intro screen](readme/intro_screen.gif)
+
 ## Game Play
 
 * tap the left and right sides of the screen to move left or right
