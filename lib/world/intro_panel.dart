@@ -18,7 +18,7 @@ class IntroPanel extends PositionComponent with HasGameRef<LeenaGame> {
         size: Vector2(gameRef.size[1] - 100, gameRef.size[1] - 100),
         position: Vector2(gameRef.size[0] / 2 + 50, 50));
     add(father);
-    add(IntroMessage(messageToLeena)
+    add(IntroMessage(messageToLeena, gameRef.size[0] / 2 - 50)
       ..size = Vector2(400, gameRef.size[1] - 100));
 
     return super.onLoad();
@@ -31,11 +31,13 @@ class IntroPanel extends PositionComponent with HasGameRef<LeenaGame> {
 }
 
 class IntroMessage extends TextBoxComponent {
-  IntroMessage(String text)
-      : super(text: text, boxConfig: TextBoxConfig(timePerChar: 0.05));
+  IntroMessage(String text, double width)
+      : super(
+            text: text,
+            boxConfig: TextBoxConfig(maxWidth: width, timePerChar: 0.05));
   @override
   void drawBackground(Canvas c) {
-    Rect rect = Rect.fromLTWH(0, 0, 400, height);
+    Rect rect = Rect.fromLTWH(0, 0, width, height);
     c.drawRect(rect, Paint()..color = Colors.red);
   }
 }
