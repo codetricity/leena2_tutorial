@@ -8,6 +8,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'package:leena2/actors/leena.dart';
 import 'package:leena2/world/ground.dart';
+import 'package:leena2/world/intro.dart';
 import 'package:tiled/tiled.dart';
 
 import 'actors/gem.dart';
@@ -50,6 +51,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   late double mapWidth;
   late AudioPool yay;
   late AudioPool bonus;
+  late Intro intro;
 
   int magicLevel = 0;
 
@@ -118,6 +120,9 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
     yay = await AudioPool.create('yay.mp3');
     bonus = await AudioPool.create('bonus.wav');
     overlays.add('DashboardOverlay');
+
+    intro = new Intro(size: size);
+    add(intro);
   }
 
   @override
