@@ -58,6 +58,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   late Timer countDown;
   int remainingTime = 30;
   bool timerStarted = false;
+  bool introFinished = false;
 
   @override
   Future<void> onLoad() async {
@@ -142,7 +143,12 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   @override
   void onTapDown(TapDownInfo info) {
     super.onTapDown(info);
-    if (leena.onGround) {
+    if (!introFinished) {
+      introFinished = true;
+      remove(intro);
+      overlays.notifyListeners();
+    }
+    if (leena.onGround && introFinished) {
       if (info.eventPosition.viewport.x < 100) {
         timerStarted = true;
         print('push left');
