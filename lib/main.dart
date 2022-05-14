@@ -52,6 +52,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   late AudioPool yay;
   late AudioPool bonus;
   late Intro intro;
+  late Sprite dadSprite;
 
   int magicLevel = 0;
 
@@ -122,6 +123,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
     bonus = await AudioPool.create('bonus.wav');
     overlays.add('DashboardOverlay');
 
+    dadSprite = await loadSprite('dad.png');
     intro = new Intro(size: size);
     add(intro);
   }
