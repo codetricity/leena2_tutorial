@@ -16,6 +16,7 @@
 
 * Android Pixel 4a API 31
   * At the time of development, the flame_audio for Linux and Windows didn't work.  Use Android
+* Flame 1.1.1
 * Flutter 2.10.5
 * Dart 2.16
 
