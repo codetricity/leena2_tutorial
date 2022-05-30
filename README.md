@@ -4,11 +4,24 @@
 
 ![game over](readme/game_over.png)
 
+![intro screen](readme/intro_screen.png)
+
 ## Game Play
 
 * tap the left and right sides of the screen to move left or right
 * tap the top of the screen to jump
 * Leena cannot move left or right when she is in the air
+
+## Environment
+
+* Android Pixel 4a API 31
+  * At the time of development, the flame_audio for Linux and Windows didn't work.  Use Android
+* Flutter 2.10.5
+* Dart 2.16
+
+## Tutorials
+
+* [Leena - Platformer with Velocity. Flame 1.1.1 26 videos](https://youtube.com/playlist?list=PLxvyAnoL-vu61SszbB5ecb0mV1ppwAIIL)
 
 ## Credits
 
