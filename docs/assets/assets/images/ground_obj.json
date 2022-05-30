@@ -1,0 +1,116 @@
+{"frames": {
+
+"Bush (1).png":
+{
+	"frame": {"x":184,"y":63,"w":133,"h":65},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":133,"h":65},
+	"sourceSize": {"w":133,"h":65}
+},
+"Bush (2).png":
+{
+	"frame": {"x":333,"y":63,"w":133,"h":65},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":133,"h":65},
+	"sourceSize": {"w":133,"h":65}
+},
+"Bush (3).png":
+{
+	"frame": {"x":352,"y":0,"w":73,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":73,"h":47},
+	"sourceSize": {"w":73,"h":47}
+},
+"Bush (4).png":
+{
+	"frame": {"x":263,"y":0,"w":73,"h":46},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":73,"h":46},
+	"sourceSize": {"w":73,"h":46}
+},
+"Crate.png":
+{
+	"frame": {"x":79,"y":144,"w":77,"h":77},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":77,"h":77},
+	"sourceSize": {"w":77,"h":77}
+},
+"Mushroom_1.png":
+{
+	"frame": {"x":0,"y":0,"w":49,"h":41},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":41},
+	"sourceSize": {"w":49,"h":41}
+},
+"Mushroom_2.png":
+{
+	"frame": {"x":65,"y":0,"w":50,"h":41},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":41},
+	"sourceSize": {"w":50,"h":41}
+},
+"Sign_1.png":
+{
+	"frame": {"x":0,"y":144,"w":63,"h":65},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":63,"h":65},
+	"sourceSize": {"w":63,"h":65}
+},
+"Sign_2.png":
+{
+	"frame": {"x":106,"y":63,"w":62,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":62,"h":64},
+	"sourceSize": {"w":62,"h":64}
+},
+"Stone.png":
+{
+	"frame": {"x":0,"y":63,"w":90,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":90,"h":54},
+	"sourceSize": {"w":90,"h":54}
+},
+"Tree_1.png":
+{
+	"frame": {"x":131,"y":0,"w":116,"h":44},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":44},
+	"sourceSize": {"w":116,"h":44}
+},
+"Tree_2.png":
+{
+	"frame": {"x":0,"y":435,"w":282,"h":301},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":282,"h":301},
+	"sourceSize": {"w":282,"h":301}
+},
+"Tree_3.png":
+{
+	"frame": {"x":172,"y":144,"w":282,"h":275},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":282,"h":275},
+	"sourceSize": {"w":282,"h":275}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "ground_obj.png",
+	"format": "RGBA8888",
+	"size": {"w":466,"h":736},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0f18a4bbffdf5ed090f9724d46aadc03:202130875aa299cbb525a4ec54944d7e:d2c5e805ff970d2a6c5c703a60e86673$"
+}
+}

@@ -6,6 +6,10 @@
 
 ![intro screen](readme/intro_screen.png)
 
+## Web Demo
+
+[https://codetricity.github.io/leena2_tutorial/](https://codetricity.github.io/leena2_tutorial/)
+
 ## Game Play
 
 * tap the left and right sides of the screen to move left or right
