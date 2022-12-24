@@ -7,7 +7,7 @@ import 'package:leena2/world/ground.dart';
 class Leena extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef<LeenaGame> {
   Leena({required position}) : super(position: position) {
-    debugMode = true;
+    debugMode = false;
     size = Vector2(83, 100);
     anchor = Anchor.bottomCenter;
   }

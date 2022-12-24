@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
@@ -6,6 +8,7 @@ import 'package:flame_audio/audio_pool.dart';
 import 'package:flame_texturepacker/flame_texturepacker.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:leena2/actors/leena.dart';
 import 'package:leena2/world/ground.dart';
 import 'package:leena2/world/intro.dart';
@@ -60,6 +63,20 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
   int remainingTime = 30;
   bool timerStarted = false;
   bool introFinished = false;
+  List<Component> gems = [];
+
+  gemInit() async {
+    var gemGroup = homeMap.tileMap.getLayer<ObjectGroup>('gems');
+    for (final gem in gemGroup!.objects) {
+      var gemSprite = await loadSprite('gems/${gem.type}.png');
+      var gemComponent = Gem(tiledObject: gem)
+        ..sprite = gemSprite
+        ..position = Vector2(gem.x, gem.y - gem.height)
+        ..size = Vector2(gem.width, gem.height);
+      add(gemComponent);
+      gems.add(gemComponent);
+    }
+  }
 
   @override
   Future<void> onLoad() async {
@@ -88,15 +105,7 @@ class LeenaGame extends FlameGame with HasCollisionDetection, TapDetector {
           position: Vector2(obj.x, obj.y)));
     }
 
-    var gemGroup = homeMap.tileMap.getLayer<ObjectGroup>('gems');
-
-    for (final gem in gemGroup!.objects) {
-      var gemSprite = await loadSprite('gems/${gem.type}.png');
-      add(Gem(tiledObject: gem)
-        ..sprite = gemSprite
-        ..position = Vector2(gem.x, gem.y - gem.height)
-        ..size = Vector2(gem.width, gem.height));
-    }
+    await gemInit();
 
     // camera.viewport = FixedResolutionViewport(Vector2(mapWidth, mapHeight));
     camera.viewport = FixedResolutionViewport(Vector2(1280, mapHeight));
