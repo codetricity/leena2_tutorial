@@ -32,7 +32,7 @@ class _Dashboard extends State<Dashboard> {
   _createRewardedAd() {
     RewardedAd.load(
       adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-9800989024754751~5778545525'
+          ? 'ca-app-pub-3940256099942544/5224354917'
           : 'ca-app-pub-3940256099942544/5224354917',
       request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
