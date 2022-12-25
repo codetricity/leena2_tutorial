@@ -8,7 +8,7 @@ class Gem extends SpriteComponent
     with CollisionCallbacks, HasGameRef<LeenaGame> {
   final TiledObject tiledObject;
   Gem({required this.tiledObject}) : super() {
-    debugMode = true;
+    debugMode = false;
   }
 
   @override
@@ -22,6 +22,7 @@ class Gem extends SpriteComponent
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     print('hit gem');
     if (other is Leena) {
+      gameRef.gems.remove(this);
       removeFromParent();
       gameRef.bonus.start();
       gameRef.magicLevel += 1;
